@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +28,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             lanzarAcercaDe();
             return true;
         }
+        if(id == R.id.config){
+            lanzarEdicion();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
     private void lanzarAcercaDe(){
         Intent i = new Intent(this,AcercaDe.class);
         startActivity(i);
     }
-    @Override
-    public void onClick(View v) {
-
+    private void lanzarEdicion(){
+        Intent i = new Intent(this,VistaLugar.class);
+        startActivity(i);
     }
 }

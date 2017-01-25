@@ -16,6 +16,11 @@
     <string name="text_nom_lugar">Nombres del lugar</string>
     <string name="text_tipo_logo">Logo del tipo</string>
     <string name="text_tipo_lugar">Tipo del lugar</string>
+    <string name="text_foto">fotografia</string>
+    <string name="text_logo_camara">logo camara</string>
+    <string name="text_logo_galeria">logo galeria</string>
+    <string name="text_fecha">Fecha</string>
+    <string name="text_hora">Hora</string>
 
     <!--hints para campos-->
     <string name="campoNombre">algo que identifique el lugar</string>

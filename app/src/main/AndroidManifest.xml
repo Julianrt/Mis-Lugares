@@ -19,6 +19,8 @@
             android:name=".AcercaDe"
             android:label="@string/text_acercaDe"
             android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity
+            android:name=".VistaLugar"/>
     </application>
 
 </manifest>
