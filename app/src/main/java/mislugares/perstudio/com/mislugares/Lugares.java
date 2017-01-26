@@ -30,10 +30,11 @@ public class Lugares {
     public static ArrayList<Lugar> ejemploLugares(){
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 
-        lugares.add(new Lugar("ITH","Av. Tecnologico col. Sahuaro",-0.166093,38.995656,
-                TipoLugar.EDUCACION,634106,"google.com","Excelente escuela",3));
+        lugares.add(new Lugar("Instituto Tecnologico de Hermosillo","Av. Tecnologico col. Sahuaro",
+                29.097282,-110.996411,TipoLugar.EDUCACION,2606500,"ith.mx","Excelente escuela",4));
+
         lugares.add(new Lugar("INTERCHAT","Pitahaya #6 col.Nuevo Sahuaripa",29.061361,-109.236947,
-                TipoLugar.COMPRAS,634106,"interchat.com","Excelente servicio",10));
+                TipoLugar.COMPRAS,3430538,"interchat.com","Excelente servicio",5));
 
         return lugares;
     }

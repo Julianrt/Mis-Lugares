@@ -3,12 +3,19 @@ package mislugares.perstudio.com.mislugares;
 
 import java.text.DateFormat;
 import java.util.Date;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.view.View;
 
 public class VistaLugar extends AppCompatActivity {
 
@@ -62,5 +69,47 @@ public class VistaLugar extends AppCompatActivity {
                 lugar.setValoracion(valor);
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.vista_lugar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.accion_compartir:
+                return true;
+            case R.id.accion_llegar:
+                return true;
+            case R.id.accion_editar:
+                lanzarEdicionLugar(null);
+                return true;
+            case R.id.accion_borrar:
+                eliminarLugar();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void eliminarLugar(){
+        new AlertDialog.Builder(this)
+                .setTitle("Borrar lugar")
+                .setMessage("¿Estas seguro que quieres eliminar este lugar?")
+                .setNegativeButton("Cancel",null)
+                .setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Lugares.borrar((int)id);
+                        finish();
+                    }
+                })
+                .show();
+    }
+    public void lanzarEdicionLugar(View view){
+        Intent i = new Intent(this,EdicionLugar.class);
+        i.putExtra("id",id);
+        startActivity(i);
     }
 }

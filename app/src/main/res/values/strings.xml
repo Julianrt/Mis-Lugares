@@ -22,6 +22,13 @@
     <string name="text_fecha">Fecha</string>
     <string name="text_hora">Hora</string>
 
+    <!--Barra de acciones-->
+    <!--vista_lugares-->
+    <string name="action_bar_compartir">compartir</string>
+    <string name="action_bar_llegar">Como llegar</string>
+    <string name="action_bar_edit">Editar</string>
+    <string name="action_bar_borrar">Borrar</string>
+
     <!--hints para campos-->
     <string name="campoNombre">algo que identifique el lugar</string>
     <string name="campoDireccion">Direccion del lugar</string>

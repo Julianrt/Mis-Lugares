@@ -3,17 +3,17 @@ package mislugares.perstudio.com.mislugares;
 
 public enum TipoLugar {
 
-    OTROS ("Otros",5),
-    RESTAURANTE ("Restaurante",2),
-    BAR("Bar",6),
-    COPAS("Copas",0),
-    ESPECTACULOS("Espectaculos",0),
-    HOTEL("Hotel",0),
-    COMPRAS("Compras",0),
-    EDUCACION("Educacion",0),
-    DEPORTE("Deporte",0),
-    NATURALEZA("Naturaleza",0),
-    GASOLINERA("Gasolonera",0);
+    OTROS ("Otros",R.drawable.otros),
+    RESTAURANTE ("Restaurante",R.drawable.restaurante),
+    BAR("Bar",R.drawable.bar),
+    COPAS("Copas",R.drawable.copas),
+    ESPECTACULOS("Espectaculos",R.drawable.espectaculos),
+    HOTEL("Hotel",R.drawable.hotel),
+    COMPRAS("Compras",R.drawable.compras),
+    EDUCACION("Educacion",R.drawable.educacion),
+    DEPORTE("Deporte",R.drawable.deporte),
+    NATURALEZA("Naturaleza",R.drawable.naturaleza),
+    GASOLINERA("Gasolonera",R.drawable.gasolinera);
 
     private final String texto;
     private final int recurso;
