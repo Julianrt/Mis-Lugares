@@ -26,7 +26,8 @@
             android:theme="@style/Theme.AppCompat"/>
         <activity
             android:name=".EdicionLugar"
-            android:label="Edicion"/>
+            android:label="Edicion"
+            android:theme="@style/Theme.AppCompat"/>
     </application>
 
 </manifest>

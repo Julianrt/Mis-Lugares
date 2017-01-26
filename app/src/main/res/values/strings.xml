@@ -28,6 +28,9 @@
     <string name="action_bar_llegar">Como llegar</string>
     <string name="action_bar_edit">Editar</string>
     <string name="action_bar_borrar">Borrar</string>
+    <!--bar_edicion_ñugar-->
+    <string name="action_bar_guardar">Guardar</string>
+    <string name="action_bar_cancelar">Cancelar</string>
 
     <!--hints para campos-->
     <string name="campoNombre">algo que identifique el lugar</string>
