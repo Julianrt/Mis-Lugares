@@ -36,6 +36,10 @@ public class Lugares {
         lugares.add(new Lugar("INTERCHAT","Pitahaya #6 col.Nuevo Sahuaripa",29.061361,-109.236947,
                 TipoLugar.COMPRAS,3430538,"interchat.com","Excelente servicio",5));
 
+        lugares.add(new Lugar("Heroe de Nacozari","Perimetral norte y Solidaridad " +
+                "col.Alvaro Obregon",29.061361,-109.236947, TipoLugar.DEPORTE,3430538,
+                "cum.com","Excelente estadio de fultbol, donde juegan los cimarrones",5));
+
         return lugares;
     }
 

@@ -42,7 +42,8 @@ public class EdicionLugar extends AppCompatActivity {
         nombre.setText(lugar.getNombre());
 
         tipo = (Spinner)findViewById(R.id.tipo);
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,TipoLugar.getNombres());
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,TipoLugar.getNombres());
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(adaptador);
         tipo.setSelection(lugar.getTipo().ordinal());

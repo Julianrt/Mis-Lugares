@@ -13,7 +13,7 @@ public enum TipoLugar {
     EDUCACION("Educacion",R.drawable.educacion),
     DEPORTE("Deporte",R.drawable.deporte),
     NATURALEZA("Naturaleza",R.drawable.naturaleza),
-    GASOLINERA("Gasolonera",R.drawable.gasolinera);
+    GASOLINERA("Gasolinera",R.drawable.gasolinera);
 
     private final String texto;
     private final int recurso;
