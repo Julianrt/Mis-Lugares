@@ -154,7 +154,8 @@
                     android:layout_width="@dimen/tamano_imagen_pequena"
                     android:layout_height="@dimen/tamano_imagen_pequena"
                     android:contentDescription="@string/text_logo_galeria"
-                    android:src="@android:drawable/ic_menu_gallery"/>
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:onClick="galeria"/>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

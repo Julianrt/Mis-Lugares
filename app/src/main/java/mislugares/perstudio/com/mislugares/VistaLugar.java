@@ -4,8 +4,10 @@ package mislugares.perstudio.com.mislugares;
 import java.text.DateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +25,12 @@ public class VistaLugar extends AppCompatActivity {
 
     private Lugar lugar;
 
+    private ImageView imageView;
+
+    final static int RESULTADO_EDITAR = 1;
+    final static int RESULTADO_GALERIA = 2;
+    final static int RESULTADO_FOTO = 3;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,9 @@ public class VistaLugar extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         id = extras.getLong("id",-1);
         lugar = Lugares.elementos((int)id);
-        actualizarVista();
+
+        imageView = (ImageView)findViewById(R.id.foto);
+        actualizarVistas();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,6 +66,12 @@ public class VistaLugar extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    public void galeria(View v){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent,RESULTADO_GALERIA);
+    }
     public void eliminarLugar(){
         new AlertDialog.Builder(this)
                 .setTitle("Borrar lugar")
@@ -73,18 +89,27 @@ public class VistaLugar extends AppCompatActivity {
     public void lanzarEdicionLugar(View view){
         Intent i = new Intent(this,EdicionLugar.class);
         i.putExtra("id",id);
-        startActivityForResult(i,1234);
+        startActivityForResult(i,RESULTADO_EDITAR);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1234) {
-            actualizarVista();
+        if (requestCode == RESULTADO_EDITAR) {
+            actualizarVistas();
             findViewById(R.id.scrollView1).invalidate();
+        } else if(requestCode == RESULTADO_GALERIA && resultCode == Activity.RESULT_OK){
+            lugar.setFoto(data.getDataString());
+            ponerFoto(imageView,lugar.getFoto());
         }
     }
-
-    public void actualizarVista(){
+    public void ponerFoto(ImageView imageView, String uri){
+        if(uri != null){
+            imageView.setImageURI(Uri.parse(uri));
+        } else {
+            imageView.setImageBitmap(null);
+        }
+    }
+    public void actualizarVistas(){
         TextView nombre = (TextView)findViewById(R.id.nombre);
         nombre.setText(lugar.getNombre());
 
@@ -120,5 +145,7 @@ public class VistaLugar extends AppCompatActivity {
                 lugar.setValoracion(valor);
             }
         });
+
+        ponerFoto(imageView, lugar.getFoto());
     }
 }
