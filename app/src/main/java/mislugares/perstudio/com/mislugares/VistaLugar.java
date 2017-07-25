@@ -1,6 +1,7 @@
 package mislugares.perstudio.com.mislugares;
 
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -9,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +33,8 @@ public class VistaLugar extends AppCompatActivity {
     final static int RESULTADO_EDITAR = 1;
     final static int RESULTADO_GALERIA = 2;
     final static int RESULTADO_FOTO = 3;
+
+    private Uri uriFoto;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +58,13 @@ public class VistaLugar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.accion_compartir:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,lugar.getNombre()+" - "+lugar.getUrl());
+                startActivity(intent);
                 return true;
             case R.id.accion_llegar:
+                verMapa(null);
                 return true;
             case R.id.accion_editar:
                 lanzarEdicionLugar(null);
@@ -66,11 +76,37 @@ public class VistaLugar extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    public void tomarFoto(View v){
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        uriFoto = Uri.fromFile(new File(Environment.getExternalStorageDirectory()+File.separator
+        +"img_"+(System.currentTimeMillis()/1000)+".jpg"));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
+        startActivityForResult(intent,RESULTADO_FOTO);
+    }
+    public void verMapa(View v){
+        Uri uri;
+        double lat = lugar.getPosicion().getLatitud();
+        double lon = lugar.getPosicion().getLongitud();
+        if (lat != 0 || lon != 0) {
+            uri = Uri.parse("geo:"+lat+","+lon);
+        }
+        else {
+            uri = Uri.parse("geo:0,0?q="+ lugar.getDireccion());
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
     public void galeria(View v){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
         startActivityForResult(intent,RESULTADO_GALERIA);
+    }
+    public void llamadaTelefono(View v){
+        startActivity(new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+lugar.getTelefono())));
+    }
+    public void pgWeb(View v){
+        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://"+lugar.getUrl())));
     }
     public void eliminarLugar(){
         new AlertDialog.Builder(this)
@@ -100,9 +136,12 @@ public class VistaLugar extends AppCompatActivity {
         } else if(requestCode == RESULTADO_GALERIA && resultCode == Activity.RESULT_OK){
             lugar.setFoto(data.getDataString());
             ponerFoto(imageView,lugar.getFoto());
+        } else if (requestCode == RESULTADO_FOTO && resultCode == Activity.RESULT_OK) {
+            lugar.setFoto(uriFoto.toString());
+            ponerFoto(imageView, lugar.getFoto());
         }
     }
-    public void ponerFoto(ImageView imageView, String uri){
+    protected void ponerFoto(ImageView imageView, String uri){
         if(uri != null){
             imageView.setImageURI(Uri.parse(uri));
         } else {

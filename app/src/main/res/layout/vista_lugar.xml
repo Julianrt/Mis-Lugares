@@ -20,7 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="verMapa">
             <ImageView
                 android:id="@+id/logo_tipo"
                 android:layout_width="@dimen/tamano_imagen_pequena"
@@ -53,7 +54,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="llamadaTelefono">
             <ImageView
                 android:layout_width="@dimen/tamano_imagen_pequena"
                 android:layout_height="@dimen/tamano_imagen_pequena"
@@ -69,7 +71,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="pgWeb">
             <ImageView
                 android:layout_width="@dimen/tamano_imagen_pequena"
                 android:layout_height="@dimen/tamano_imagen_pequena"
@@ -149,7 +152,8 @@
                     android:layout_width="@dimen/tamano_imagen_pequena"
                     android:layout_height="@dimen/tamano_imagen_pequena"
                     android:contentDescription="@string/text_logo_camara"
-                    android:src="@android:drawable/ic_menu_camera"/>
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:onClick="tomarFoto"/>
                 <ImageView
                     android:layout_width="@dimen/tamano_imagen_pequena"
                     android:layout_height="@dimen/tamano_imagen_pequena"
